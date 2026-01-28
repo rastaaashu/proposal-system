@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Faceless Video SaaS MVP | Proposal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header with Logo -->
+    <div class="header">
+      <div class="logo-circle">
+        <img src="logo.png" alt="Rastaman Studio" class="logo-img" />
+      </div>
+      <div class="header-text">
+        <div class="studio-name">Rastaman Studio</div>
+        <div class="header-subtitle">Professional Development Services</div>
+      </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card">
+      <!-- Top badge -->
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Official Proposal
+      </div>
+
+      <!-- Project Title -->
+      <h1 id="project-title">Faceless Video SaaS MVP</h1>
+      <div class="subtitle">
+        Proposal for <strong id="client-name">Crypto A</strong> · Version <span id="version">1.0</span>
+        <div class="chip">
+          <span class="chip-dot"></span>
+          <span id="status-text">Active proposal</span>
+        </div>
+      </div>
+
+      <!-- Meta pills -->
+      <div class="meta-row">
+        <div class="meta-pill">
+          <span>Project ID</span>
+          <span class="value" id="project-id">FVS-001</span>
+        </div>
+        <div class="meta-pill">
+          <span>Timeline</span>
+          <span class="value" id="timeline">4–6 weeks</span>
+        </div>
+        <div class="meta-pill">
+          <span>Investment</span>
+          <span class="value" id="price">10 SOL</span>
+        </div>
+        <div class="meta-pill">
+          <span>Valid until</span>
+          <span class="value" id="valid-until">10 Feb 2026</span>
+        </div>
+      </div>
+
+      <!-- Overview -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Project overview</div>
+          <div class="section-tag">Summary</div>
+        </div>
+        <div id="overview-content">
+          <p>
+            Design and build a lean faceless video SaaS MVP that lets users generate vertical videos
+            (TikTok, Reels, Shorts) from simple prompts and pay a monthly subscription for access.
+          </p>
+          <p>
+            The focus is speed to market: launch quickly, onboard your first users, and validate
+            recurring revenue before expanding features.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scope -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Scope & deliverables</div>
+          <div class="section-tag">Phase 1 – MVP</div>
+        </div>
+        <div id="scope-content">
+          <p>Phase 1 includes everything required to onboard paying users and deliver value:</p>
+          <ul class="list">
+            <li>Landing page, authentication, and user dashboard.</li>
+            <li>Stripe subscriptions with at least two plans and usage limits.</li>
+            <li>Prompt → script → voice → video generation flow (vertical format, MP4 output).</li>
+            <li>Video history and downloads from the dashboard.</li>
+            <li>Basic admin view for users, plans, and usage.</li>
+          </ul>
+          <div class="highlight-box">
+            <span class="chip-dot"></span>
+            Future additions like auto-posting and advanced analytics are planned for Phase 2+.
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Development timeline</div>
+          <div class="section-tag">Estimated</div>
+        </div>
+        <div id="timeline-content">
+          <p>Estimated delivery for Phase 1 is <strong id="timeline-duration">4–6 weeks</strong> from project start.</p>
+          <div class="timeline-grid">
+            <div class="timeline-item">
+              <div class="timeline-week">Week 1</div>
+              <div class="timeline-desc">Setup, design, and core layout</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-week">Weeks 2–3</div>
+              <div class="timeline-desc">Auth, subscriptions, and dashboard</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-week">Weeks 3–4</div>
+              <div class="timeline-desc">AI script/voice/video pipeline</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-week">Weeks 5–6</div>
+              <div class="timeline-desc">Polish, testing, and deployment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investment -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Investment</div>
+          <div class="section-tag">Fixed fee</div>
+        </div>
+        <div class="price-block">
+          <div class="price-main" id="price-display">10 SOL</div>
+          <div class="price-note">for Phase 1 MVP build</div>
+        </div>
+        <p style="margin-top:12px;" id="payment-terms">
+          Payment terms can be split 50% at start, 50% at delivery, or adapted to what works best for both sides. Below there is a breakdown of what's included in the payment terms.
+        </p>
+        <div class="pill-row">
+          <div class="pill">✓ Design, development, deployment</div>
+          <div class="pill">✓ Testing & bug fixes</div>
+          <div class="pill">✓ 2 weeks post-launch support</div>
+        </div>
+        <div class="pill-row" style="margin-top:6px;">
+          <div class="pill pill-exclude">✗ AI API subscriptions</div>
+          <div class="pill pill-exclude">✗ Hosting costs</div>
+        </div>
+      </div>
+
+      <!-- Tech Stack (Optional - looks professional) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Technical approach</div>
+          <div class="section-tag">Stack</div>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <div class="tech-name">Frontend</div>
+            <div class="tech-desc">Next.js / React</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-name">Backend</div>
+            <div class="tech-desc">Node.js + Express</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-name">Database</div>
+            <div class="tech-desc">PostgreSQL</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-name">AI Services</div>
+            <div class="tech-desc">OpenAI, ElevenLabs, FFmpeg</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-name">Payments</div>
+            <div class="tech-desc">Stripe</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-name">Hosting</div>
+            <div class="tech-desc">Vercel / Railway</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <div class="section-header">
+          <div class="section-title">Ready to move forward?</div>
+          <div class="section-tag">Decision required</div>
+        </div>
+        <p style="margin-bottom:14px;">
+          Choose an option below. If you accept, please share your contact details so we can lock in the timeline and get started.
+        </p>
+
+        <div class="action-buttons">
+          <button class="btn-primary" id="btn-accept">
+            <span>✓</span> Accept proposal
+          </button>
+          <button class="btn-danger" id="btn-decline">
+            <span>✕</span> Decline / not now
+          </button>
+        </div>
+
+        <!-- Form -->
+        <div class="form" id="response-form">
+          <div class="form-header">
+            <div class="form-title" id="form-title">Accept proposal</div>
+            <div class="form-subtitle">Please provide your contact information</div>
+          </div>
+          
+          <form id="proposalForm">
+            <input type="hidden" name="proposalId" id="proposalIdField" value="FVS-001" />
+            <input type="hidden" name="decision" id="decisionField" value="accepted" />
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Full name *</label>
+                <input id="name" name="name" required placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email address </label>
+                <input id="email" name="email" type="email"  placeholder="you@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="telegram">Telegram username</label>
+                <input id="telegram" name="telegram" placeholder="@yourhandle" />
+              </div>
+              <div class="form-group">
+                <label for="company">Company / project name</label>
+                <input id="company" name="company" placeholder="Optional" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:12px;">
+              <label for="notes">Additional notes or questions</label>
+              <textarea id="notes" name="notes" placeholder="Any specific requirements, questions, or timeline preferences..."></textarea>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn-primary btn-submit">
+                <span>→</span> Submit response
+              </button>
+              <button type="button" class="btn-secondary" id="btn-cancel">
+                Cancel
+              </button>
+            </div>
+
+            <div id="status" class="status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-logo">
+        <div class="logo-circle-small">
+          <img src="logo.png" alt="Rastaman Studio" class="logo-img" />
+        </div>
+      </div>
+      <div class="footer-text">
+        <div>© 2026 Rastaman Studio · Professional Development Services</div>
+        <div class="footer-contact">Questions? Contact via Telegram or email provided in proposal</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
