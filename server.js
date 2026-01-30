@@ -1,45 +1,26 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-import { Resend } from "resend";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --------------------
 // Middleware
-// --------------------
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-// --------------------
-// RESEND EMAIL CONFIG
-// --------------------
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// --------------------
-// In-memory store (optional – only for viewing)
-// --------------------
+// In-memory store (temporary) just so you can see something working
 const responses = [];
 
-// --------------------
-// POST: proposal response
-// --------------------
-app.post("/api/proposal/response", async (req, res) => {
+// API endpoint to submit proposal response
+app.post('/api/proposal/response', (req, res) => {
   const { proposalId, decision, name, email, telegram, company, notes } = req.body;
 
   if (!proposalId || !decision || !name || !email) {
-    return res.status(400).json({ error: "Missing required fields" });
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
   const entry = {
@@ -48,78 +29,38 @@ app.post("/api/proposal/response", async (req, res) => {
     decision,
     name,
     email,
-    telegram: telegram || "",
-    company: company || "",
-    notes: notes || "",
-    created_at: new Date().toISOString(),
-    ip:
-      req.headers["x-forwarded-for"] ||
-      req.socket.remoteAddress ||
-      "unknown"
+    telegram: telegram || '',
+    company: company || '',
+    notes: notes || '',
+    created_at: new Date().toISOString()
   };
 
-  // Store temporarily (not relied on)
   responses.push(entry);
 
-  console.log(`📩 ${decision.toUpperCase()} — ${proposalId}`);
+  console.log(`New response: ${decision} by ${name} for ${proposalId}`);
   console.log(entry);
-
-  // --------------------
-  // SEND EMAIL (PERMANENT RECORD)
-  // --------------------
-  try {
-    await resend.emails.send({
-      from: "Proposal System <onboarding@resend.dev>",
-      to: [process.env.EMAIL_TO],
-      subject: `📩 ${decision.toUpperCase()} — ${proposalId}`,
-      html: `
-        <h2>New Proposal Response</h2>
-        <p><strong>Proposal ID:</strong> ${proposalId}</p>
-        <p><strong>Decision:</strong> ${decision}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company || "N/A"}</p>
-        <p><strong>Telegram:</strong> ${telegram || "N/A"}</p>
-        <p><strong>Notes:</strong> ${notes || "None"}</p>
-        <hr />
-        <pre style="background:#111;color:#0f0;padding:12px;border-radius:6px">
-${JSON.stringify(entry, null, 2)}
-        </pre>
-      `
-    });
-
-    console.log("✅ Email sent successfully");
-  } catch (err) {
-    console.error("❌ Email failed:", err);
-  }
 
   res.json({
     success: true,
-    message: "Response received and emailed",
+    message: 'Response received',
     id: entry.id
   });
 });
 
-// --------------------
-// GET: all responses (temporary view only)
-// --------------------
-app.get("/api/responses", (req, res) => {
+// API endpoint to get all responses (for you to view)
+app.get('/api/responses', (req, res) => {
   res.json(responses);
 });
 
-// --------------------
-// GET: responses by proposal
-// --------------------
-app.get("/api/responses/:proposalId", (req, res) => {
-  const filtered = responses.filter(
-    r => r.proposal_id === req.params.proposalId
-  );
+// API endpoint to get responses for a specific proposal
+app.get('/api/responses/:proposalId', (req, res) => {
+  const proposalId = req.params.proposalId;
+  const filtered = responses.filter(r => r.proposal_id === proposalId);
   res.json(filtered);
 });
 
-// --------------------
-// START SERVER
-// --------------------
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Proposal system running on port ${PORT}`);
+// Start server
+app.listen(PORT, () => {
+  console.log(`\n🚀 Proposal system running on port ${PORT}`);
+  console.log(`📄 View proposals at: http://localhost:${PORT}/proposal.html\n`);
 });
